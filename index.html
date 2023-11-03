@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Make the Case</title>
+</head>
+
+<body>
+    <h1>Make the Case</h1>
+    <div>
+        <div>
+            <label for="entered-text">Enter Text:</label><br>
+            <textarea id="entered-text" name="entered-text"></textarea><br>
+            <button id="clap-button">Clap 👏 It</button>
+            <button id="sponge-button">sPoNgE iT</button>
+        </div>
+        <div>
+            <label for="output-text">Output:</label><br>
+            <textarea id="output-text" name="output-text"></textarea>
+            <button id="copy">Copy!</button>
+        </div>
+    </div>
+
+    <script>
+        const clapButton = document.getElementById("clap-button")
+
+        clapButton.addEventListener("click", (event) => {
+            const inputEl = document.getElementById("entered-text")
+            const text = inputEl.value
+            const splitText = text.split(" ")
+            console.log(splitText)
+            const clappedText = splitText.join(" 👏 ")
+            const outputEl = document.getElementById("output-text")
+            console.log(outputEl)
+            outputEl.value = clappedText
+        })
+    </script>
+    <script>
+        const spongeButton = document.getElementById("sponge-button")
+
+        spongeButton.addEventListener("click", (event) => {
+            const inputEl = document.getElementById("entered-text")
+            const text = inputEl.value
+            const splitText = text.split("")
+            const spongedText = splitText.map((char, index) => index % 2 == 1 ? char.toUpperCase() : char).join("")
+            const outputEl = document.getElementById("output-text")
+            outputEl.value = spongedText
+        })
+    </script>
+    <script>
+        const copyButton = document.getElementById("copy")
+        copyButton.addEventListener("click", (event) => {
+            const outputEl = document.getElementById("output-text")
+            navigator.clipboard.writeText(outputEl.value)
+        })
+    </script>
+</body>
+
+</html>
