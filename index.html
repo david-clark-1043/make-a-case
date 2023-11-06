@@ -2,21 +2,67 @@
 <html>
 
 <head>
-    <title>Make the Case</title>
+    <title>Make 👏 a 👏 cAsE</title>
+    <style>
+        body {
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .output-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 2em;
+        }
+
+        .textarea {
+            font-size: 3em;
+            border: 1px solid #ccc;
+            padding: 1px 6px;
+            display: block;
+            width: 100%;
+            overflow: hidden;
+            resize: both;
+            min-height: 3em;
+            width: 60vw;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+        }
+
+        button {
+            font-size: 2em;
+            margin: .1em;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Make the Case</h1>
+    <h1>Make 👏 a 👏 cAsE</h1>
     <div>
-        <div>
+        <div class="input-container">
             <label for="entered-text">Enter Text:</label><br>
-            <textarea id="entered-text" name="entered-text"></textarea><br>
-            <button id="clap-button">Clap 👏 It</button>
-            <button id="sponge-button">sPoNgE iT</button>
+            <span class="textarea" role="textbox" contenteditable="" id="entered-text" name="entered-text"></span><br>
+            <div class="buttons">
+                <button id="clap-button">Clap 👏 It</button>
+                <button id="sponge-button">sPoNgE iT</button>
+            </div>
         </div>
-        <div>
+        <div class="output-container">
             <label for="output-text">Output:</label><br>
-            <textarea id="output-text" name="output-text"></textarea>
+            <span class="textarea" role="textbox" contenteditable="" id="output-text" name="output-text"></span><br>
             <button id="copy">Copy!</button>
         </div>
     </div>
@@ -26,13 +72,11 @@
 
         clapButton.addEventListener("click", (event) => {
             const inputEl = document.getElementById("entered-text")
-            const text = inputEl.value
+            const text = inputEl.innerText
             const splitText = text.split(" ")
-            console.log(splitText)
             const clappedText = splitText.join(" 👏 ")
             const outputEl = document.getElementById("output-text")
-            console.log(outputEl)
-            outputEl.value = clappedText
+            outputEl.innerText = clappedText
         })
     </script>
     <script>
@@ -40,18 +84,18 @@
 
         spongeButton.addEventListener("click", (event) => {
             const inputEl = document.getElementById("entered-text")
-            const text = inputEl.value
+            const text = inputEl.innerText
             const splitText = text.split("")
-            const spongedText = splitText.map((char, index) => index % 2 == 1 ? char.toUpperCase() : char).join("")
+            const spongedText = splitText.map((char, index) => index % 2 == 1 ? char.toUpperCase() : char.toLowerCase()).join("")
             const outputEl = document.getElementById("output-text")
-            outputEl.value = spongedText
+            outputEl.innerText = spongedText
         })
     </script>
     <script>
         const copyButton = document.getElementById("copy")
         copyButton.addEventListener("click", (event) => {
             const outputEl = document.getElementById("output-text")
-            navigator.clipboard.writeText(outputEl.value)
+            navigator.clipboard.writeText(outputEl.innerText)
         })
     </script>
 </body>
